@@ -12,5 +12,6 @@ env_logger = "0.10"
 ipfs-api-backend-hyper = "0.6"
 log = "0.4"
 tokio = { version = "1", features = ["full"] }
-web3 = "0.17"
+web3 = { version = "0.18.0", features = ["signing"] }
 anyhow = "1.0"
+secp256k1 = "0.21.3"

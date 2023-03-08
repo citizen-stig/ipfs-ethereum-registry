@@ -8,9 +8,10 @@ use clap::Parser;
 
 mod cli;
 mod ipfs;
+mod blockchain;
 
 #[tokio::main]
-async fn main() {
+async fn main() -> anyhow::Result<()> {
     env_logger::init();
     let args = cli::Args::parse();
 
@@ -21,8 +22,9 @@ async fn main() {
     }
     log::info!("Starting uploading file {}", path.display());
 
-    let file = File::open(path).unwrap();
+    let file = File::open(path)?;
     let buf_reader = BufReader::new(file);
-    ipfs::upload_data(buf_reader).await;
-    log::info!("DONE")
+    let content_id = ipfs::upload_data(buf_reader).await?;
+
+    blockchain::register_content_id(args.eth_key, content_id).await
 }
