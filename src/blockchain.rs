@@ -17,9 +17,7 @@ pub async fn register_content_id(eth_key: String, content_id: String) -> anyhow:
         contract_abi,
     )?;
 
-    let secret_key =
-        SecretKey::from_str(&eth_key).unwrap();
-
+    let secret_key = SecretKey::from_str(&eth_key)?;
     let sk = SecretKeyRef::new(&secret_key);
 
     let tx = contract.signed_call(
@@ -29,7 +27,7 @@ pub async fn register_content_id(eth_key: String, content_id: String) -> anyhow:
         sk,
     ).await?;
 
-    log::info!("Submitted: {:?}", tx);
+    log::info!("File was registered in transaction with hash: {:?}", tx);
 
     Ok(())
 }

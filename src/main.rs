@@ -5,7 +5,6 @@ use std::process::exit;
 
 use clap::Parser;
 
-
 mod cli;
 mod ipfs;
 mod blockchain;
