@@ -6,7 +6,7 @@ use web3::signing::SecretKeyRef;
 use web3::types::Address;
 
 
-pub async fn register_content_id(eth_key: String, content_id: String, contract_address: String) -> anyhow::Result<()> {
+pub async fn register_content_id(eth_key: &str, content_id: &str, contract_address: &str) -> anyhow::Result<String> {
     let url = env::var("BLOCKCHAIN_URL").unwrap_or("http://localhost:8545".to_string());
     let transport = web3::transports::Http::new(&url)?;
     let web3 = web3::Web3::new(transport);
@@ -14,21 +14,21 @@ pub async fn register_content_id(eth_key: String, content_id: String, contract_a
     let contract_abi = include_bytes!("./abi.json");
     let contract = Contract::from_json(
         web3.eth(),
-        Address::from_str(&contract_address).unwrap(),
+        Address::from_str(contract_address).unwrap(),
         contract_abi,
     )?;
 
-    let secret_key = SecretKey::from_str(&eth_key)?;
+    let secret_key = SecretKey::from_str(eth_key)?;
     let sk = SecretKeyRef::new(&secret_key);
 
     let tx = contract.signed_call(
         "registerFile",
-        (content_id, ),
+        (content_id.to_string(), ),
         Options::default(),
         sk,
     ).await?;
 
-    log::info!("File was registered in transaction with hash: {:?}", tx);
+    log::info!("File was registered in transaction with hash: {}", tx);
 
-    Ok(())
+    Ok(tx.to_string())
 }
