@@ -19,12 +19,3 @@ services:
     command: --deterministic --mnemonic "buffalo they brave owner merit oak buddy brown chapter program nut text" --port 8545
     ports:
       - "8545:8545"
-
-#  contract-deploy:
-#    build: .
-#    depends_on:
-#      - ganache
-#      - ipfs
-#    environment:
-#      - WEB3_URL=http://ganache:8545
-#      - IPFS_URL=http://ipfs:5001
