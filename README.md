@@ -8,8 +8,8 @@
 
 1. Prepare dependencies by running `make install`
 2. Start ipfs node and ganache cli by running `docker-compose up`
-3. Deploy smart contract by running `make deploy-smart-contract`. Address of deployed smart contract is printed at the end. It will be needed at later stages
-
+3. Deploy smart contract by running `make deploy-smart-contract`. Address of deployed smart contract is printed at the
+   end. It will be needed at later stages
 
 # How to run
 
@@ -18,3 +18,8 @@ cargo run -- --path file.txt --eth-key=c95accbb87ea1c37aa0e7abce7a01d81211257347
 ```
 
 Different private keys are available, they can be found in the output of ganache-cli docker container
+
+Program can be pointed to different IPFS or Blockchain urls, if these environment variables are specifies:
+
+* `IPFS_URL`, default is "http://127.0.0.1:5001"
+* `BLOCKCHAIN_URL`, default is ""http://localhost:8545"

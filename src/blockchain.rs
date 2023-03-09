@@ -1,4 +1,5 @@
 use std::str::FromStr;
+use std::env;
 use secp256k1::SecretKey;
 use web3::contract::{Contract, Options};
 use web3::signing::SecretKeyRef;
@@ -6,7 +7,8 @@ use web3::types::Address;
 
 
 pub async fn register_content_id(eth_key: String, content_id: String, contract_address: String) -> anyhow::Result<()> {
-    let transport = web3::transports::Http::new("http://localhost:8545")?;
+    let url = env::var("BLOCKCHAIN_URL").unwrap_or("http://localhost:8545".to_string());
+    let transport = web3::transports::Http::new(&url)?;
     let web3 = web3::Web3::new(transport);
 
     let contract_abi = include_bytes!("./abi.json");
