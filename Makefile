@@ -10,3 +10,6 @@ install:
 
 deploy-smart-contract:
 	cd smart_contract && npx hardhat run --network ganache scripts/deploy.js
+
+events_watcher:
+	cd smart_contract && npx hardhat run --network ganache scripts/watchEvents.js
