@@ -17,7 +17,17 @@
 cargo run -- --path file.txt --eth-key=c95accbb87ea1c37aa0e7abce7a01d8121125734788843a1662a79219cce8fce --contract-address=0xd0520dba92cfd1fed6d9dd6bf3ecd546c65ce759
 ```
 
-Different private keys are available, they can be found in the output of ganache-cli docker container
+Different private keys are available, they can be found in the output of ganache-cli docker container.
+
+(!) Please note, that smart contract forbids registering same file more than once, program will return error in that
+case
+
+Additionally, to check that smart contract has processed registration properly, script for monitoring events can be run
+in separate console
+
+```
+make events_watcher
+```
 
 Program can be pointed to different IPFS or Blockchain urls, if these environment variables are specifies:
 
