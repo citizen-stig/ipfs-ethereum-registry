@@ -9,7 +9,6 @@ pub async fn register_content_id(eth_key: String, content_id: String, contract_a
     let transport = web3::transports::Http::new("http://localhost:8545")?;
     let web3 = web3::Web3::new(transport);
 
-    // Load the contract ABI
     let contract_abi = include_bytes!("./abi.json");
     let contract = Contract::from_json(
         web3.eth(),

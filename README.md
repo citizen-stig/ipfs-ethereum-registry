@@ -1,17 +1,20 @@
 # Prerequisites
 
-1. ipfs daemon
-2. ganache-cli
-3. npm
-4. Rust toolchain
-
+1. [Docker](https://docs.docker.com/get-docker/) with compose functionality
+2. [npm](https://docs.npmjs.com/cli/v7/configuring-npm/install)
+3. [Rust toolchain](https://rustup.rs/)
 
 # Preparation
 
+1. Prepare dependencies by running `make install`
+2. Start ipfs node and ganache cli by running `docker-compose up`
+3. Deploy smart contract by running `make deploy-smart-contract`. Address of deployed smart contract is printed at the end. It will be needed at later stages
 
 
 # How to run
 
 ```
-cargo run -- --path file.txt --eth-key=c95accbb87ea1c37aa0e7abce7a01d8121125734788843a1662a79219cce8fce
+cargo run -- --path file.txt --eth-key=c95accbb87ea1c37aa0e7abce7a01d8121125734788843a1662a79219cce8fce --contract-address=0xd0520dba92cfd1fed6d9dd6bf3ecd546c65ce759
 ```
+
+Different private keys are available, they can be found in the output of ganache-cli docker container
