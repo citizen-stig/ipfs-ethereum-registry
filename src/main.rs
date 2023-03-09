@@ -25,5 +25,5 @@ async fn main() -> anyhow::Result<()> {
     let buf_reader = BufReader::new(file);
     let content_id = ipfs::upload_data(buf_reader).await?;
 
-    blockchain::register_content_id(args.eth_key, content_id).await
+    blockchain::register_content_id(args.eth_key, content_id, args.contract_address).await
 }

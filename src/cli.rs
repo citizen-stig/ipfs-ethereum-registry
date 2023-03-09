@@ -7,5 +7,8 @@ pub struct Args {
     pub path: String,
 
     #[arg(short, long)]
-    pub eth_key: String
+    pub eth_key: String,
+
+    #[arg(short, long)]
+    pub contract_address: String
 }
