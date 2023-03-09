@@ -14,7 +14,7 @@
 # How to run
 
 ```
-cargo run -- --path file.txt --eth-key=c95accbb87ea1c37aa0e7abce7a01d8121125734788843a1662a79219cce8fce --contract-address=0xd0520dba92cfd1fed6d9dd6bf3ecd546c65ce759
+ ./target/debug/registrar --path file.txt --eth-key=c95accbb87ea1c37aa0e7abce7a01d8121125734788843a1662a79219cce8fce --contract-address=0xd0520dba92cfd1fed6d9dd6bf3ecd546c65ce759
 ```
 
 Different private keys are available, they can be found in the output of ganache-cli docker container.
